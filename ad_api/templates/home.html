@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Reimbursement</title>
+</head>
+<body>
+    <h1>Ad Reimbursement</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <h2>Summary</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Ad Type</th>
+                <th>Date</th>
+                <th>Ads Run</th>
+                <th>Spend</th>
+                <th>Cost Sharing</th>
+                <th>Reimbursement</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ad in ads %}
+            <tr>
+                <td>{{ ad.ad_type }}</td>
+                <td>{{ ad.date }}</td>
+                <td>{{ ad.ads_run }}</td>
+                <td>{{ ad.spend }}</td>
+                <td>{{ ad.cost_sharing }}</td>
+                <td>{{ ad.reimbursement }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <p>Total Cost: {{ total_cost }}</p>
+    <p>Total Cost Sharing: {{ total_cost_sharing }}</p>
+    <p>Total Reimbursement: {{ total_reimbursement }}</p>
+</body>
+</html>
